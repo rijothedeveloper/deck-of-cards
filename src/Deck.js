@@ -30,7 +30,11 @@ const Deck = () => {
       
     }
     
-    const addCard = (card) => setCards([...cards, card])
+    const addCard = (card) => {
+      setCards( c => {
+        return ([...c, card])
+      })
+    }
     
     const cardUI = cards.map( (card) => <Card imgUrl={card.image} />)
   
