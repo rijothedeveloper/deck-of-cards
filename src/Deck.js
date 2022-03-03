@@ -20,8 +20,14 @@ const Deck = () => {
 
     const drawCard = async () => {
       const card_response = await axios.get(`http://deckofcardsapi.com/api/deck/${deckId.current}/draw/?count=2`);
-      const card = card_response.data.cards[0];
-      addCard(card)
+      const remaining = card_response.data.remaining;
+      if(remaining > 0) {
+        const card = card_response.data.cards[0];
+        addCard(card)
+      } else {
+        alert("cards exhausted");
+      }
+      
     }
     
     const addCard = (card) => setCards([...cards, card])
