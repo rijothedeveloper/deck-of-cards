@@ -1,7 +1,13 @@
+import { useEffect } from "react"
+
 const CardButton = ({drawCard}) => {
+    let timerId;
+    useEffect(() => {
+      return () => clearTimeout(timerId)
+      }, []);
+    
     const handleClick = () => {
-        const id = setInterval( async () => {await drawCard()}, 1000)
-        console.log(`Interval id is ${id}`)
+        timerId = setInterval( async () => {await drawCard()}, 1000)
     }
     return(
         <button onClick={handleClick}>Game A Card</button>
